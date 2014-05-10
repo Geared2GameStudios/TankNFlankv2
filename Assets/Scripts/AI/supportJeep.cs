@@ -4,6 +4,7 @@ using System.Collections;
 public class supportJeep : MonoBehaviour {
 	public static supportJeep Instance;
 	public GameObject drop;
+	public GameObject truckMesh;
 	public bool pickedUp;
 	public bool follow;
 	public bool workDammit;
@@ -17,20 +18,27 @@ public class supportJeep : MonoBehaviour {
 	void Start () {
 		Instance = this;
 		npc = GetComponent<NavMeshAgent>();
-		follow = false;
+		follow = true;
 		pickedUp = false;
 		workDammit = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (follow && workDammit == false && pickedUp == false) 
+		{
+			npc.destination = player.localPosition;
+			truckMesh.SetActive(false);
+			
+		}
+
+
 		if (follow) 
 		{
 			npc.destination = player.localPosition;
 		}
-
-	
-
+		
 		if (workDammit == true)
 		{
 			follow = false;
@@ -46,7 +54,7 @@ public class supportJeep : MonoBehaviour {
 
 	void dropPickUp()
 	{
-		//npc.gameObject.SetActive (true);
+		truckMesh.SetActive (true);
 		npc.destination = drop.transform.position;
 		
 
