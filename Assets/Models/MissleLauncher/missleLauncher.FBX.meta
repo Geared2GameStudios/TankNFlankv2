@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: 3bafa8d2f0b864f4f9fc3aaf75a8977f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Mesh01
+    100002: Mesh02
+    100004: Mesh03
+    100006: Mesh04
+    100008: Mesh07
+    100010: Missle 001
+    100012: Missle 002
+    100014: Missle 003
+    100016: Missle 004
+    100018: Missle 005
+    100020: Missle 006
+    100022: Missle 007
+    100024: Missle 008
+    100026: //RootNode
+    400000: Mesh01
+    400002: Mesh02
+    400004: Mesh03
+    400006: Mesh04
+    400008: Mesh07
+    400010: Missle 001
+    400012: Missle 002
+    400014: Missle 003
+    400016: Missle 004
+    400018: Missle 005
+    400020: Missle 006
+    400022: Missle 007
+    400024: Missle 008
+    400026: //RootNode
+    2300000: Mesh01
+    2300002: Mesh02
+    2300004: Mesh03
+    2300006: Mesh04
+    2300008: Mesh07
+    2300010: Missle 001
+    2300012: Missle 002
+    2300014: Missle 003
+    2300016: Missle 004
+    2300018: Missle 005
+    2300020: Missle 006
+    2300022: Missle 007
+    2300024: Missle 008
+    2300026: //RootNode
+    3300000: Mesh01
+    3300002: Mesh02
+    3300004: Mesh03
+    3300006: Mesh04
+    3300008: Mesh07
+    3300010: Missle 001
+    3300012: Missle 002
+    3300014: Missle 003
+    3300016: Missle 004
+    3300018: Missle 005
+    3300020: Missle 006
+    3300022: Missle 007
+    3300024: Missle 008
+    3300026: //RootNode
+    4300000: MissleLauncher
+    4300002: Mesh02
+    4300004: Mesh04
+    4300006: Mesh07
+    4300008: Missle 008
+    4300010: Missle 004
+    4300012: Missle 002
+    4300014: Mesh03
+    4300016: Mesh01
+    4300018: Missle 007
+    4300020: Missle 005
+    4300022: Missle 001
+    4300024: Missle 003
+    4300026: Missle 006
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
