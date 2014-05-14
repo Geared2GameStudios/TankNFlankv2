@@ -34,8 +34,8 @@ public class PlayerSettingsScript : MonoBehaviour {
 	{
 		if(ovrDevice.SenseCount > 0)
 		{
-				mainCamera.SetActive(false);
-				ovrCamera.SetActive(true);
+			mainCamera.SetActive(false);
+			ovrCamera.SetActive(true);
 		}
 		else
 		{
