@@ -6,15 +6,24 @@ public class IntroGearScript : MonoBehaviour {
 	public float speed = 10.0f;
 	public Transform parent;
 	public AudioClip nextClip;
-	
+	public GameObject mainCamera;
+	public GameObject oculusCamera;
+	private PlayerSettingsScript psScript;
 	private bool playOnce = false;
 	void Awake()
 	{
 		 parent.position = new Vector3(parent.position.x, 22.0f, parent.position.z);
-	
+		 mainCamera = GameObject.Find("Main Camera");
+		 oculusCamera = GameObject.Find("OVRCameraController");
+	 	 psScript = GameObject.Find("PlayerSettings").GetComponent<PlayerSettingsScript>();
 	}
 	void Update () 
 	{
+
+
+		mainCamera.SetActive(psScript.mainCameraOn);
+		oculusCamera.SetActive(psScript.oculusOn);
+
 		this.transform.Rotate(Vector3.up * speed);
 		
 		if(parent.position.y > 1.0f)

@@ -4,54 +4,54 @@ using System.Collections;
 public class PlayerSettingsScript : MonoBehaviour {
 	public static PlayerSettingsScript Instance;
 
-	public bool oculusOn;
-	public float masterVolume;
-	public float effectsVolume;
+	public bool oculusOn = false;
+	public bool mainCameraOn = false;
+
+	public float masterVolume = 1.0f;
+	public float effectsVolume = 1.0f;
+
+
 	private GameObject mainCamera;
 	private GameObject ovrCamera;
 	private OVRDevice ovrDevice;
-	
+	private int 	sensorCount = -1;
+
+
 	void Awake()
 	{
 		DontDestroyOnLoad(this);
-		ovrDevice = this.GetComponent<OVRDevice>();
-		mainCamera = GameObject.Find("Main Camera");
-		ovrCamera = GameObject.Find("OVRCameraController");
+
 		oculusOn = false;
 		masterVolume = 1.0f;
 		effectsVolume = 1.0f;
 
 		
 	}
+
 	// Use this for initialization
 	void Start () 
 	{
-		
+		ovrDevice = this.GetComponent<OVRDevice>();
+	
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		ovrCamera = GameObject.Find("OVRCameraController");
-		mainCamera = GameObject.Find ("Main Camera");
-		
-		if(ovrDevice.SenseCount > 0)
+		if(sensorCount != ovrDevice.SenseCount)
 		{
-			if(!ovrCamera.activeSelf)
+			if(ovrDevice.SenseCount > 0)
 			{
-			mainCamera.SetActive(false);
-			ovrCamera.SetActive(true);
+				mainCameraOn = false;
+				oculusOn  = true;
 			}
-		}
-		else
-		{
-		 	if(!mainCamera.activeSelf)
-		 	{
-			ovrCamera.SetActive(false);
-			mainCamera.SetActive(true);
+			else
+			{
+				mainCameraOn = true;
+				oculusOn = false;
 			}
+			sensorCount = ovrDevice.SenseCount;
 		}
-	
 		
 		
 	}
