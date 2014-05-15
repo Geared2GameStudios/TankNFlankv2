@@ -32,15 +32,28 @@ public class PlayerSettingsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		ovrCamera = GameObject.Find("OVRCameraController");
+		mainCamera = GameObject.Find ("Main Camera");
+		
 		if(ovrDevice.SenseCount > 0)
 		{
+			if(!ovrCamera.activeSelf)
+			{
 			mainCamera.SetActive(false);
 			ovrCamera.SetActive(true);
+			}
 		}
 		else
 		{
+		 	if(!mainCamera.activeSelf)
+		 	{
 			ovrCamera.SetActive(false);
 			mainCamera.SetActive(true);
+			}
 		}
+	
+		
+		
 	}
+	
 }
