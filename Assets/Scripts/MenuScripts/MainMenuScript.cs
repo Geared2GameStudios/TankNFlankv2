@@ -80,9 +80,9 @@ public class MainMenuScript : MonoBehaviour
 		
 		else if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
+			Input.compositionCursorPos = new Vector2(0f,0f);
 			movingMouse = true;
 			movingController = false;
-			Screen.showCursor = false;
 			pointer.gameObject.SetActive(true);
 			tempX = Input.GetAxis("Horizontal") * pointerSpeed * Time.deltaTime;
 			tempY = Input.GetAxis("Vertical") * pointerSpeed *  Time.deltaTime;
@@ -111,10 +111,11 @@ public class MainMenuScript : MonoBehaviour
 		mainCamera.SetActive(psScript.mainCameraOn);
 	}	
 	void GetMouse()
-	{		
-		Ray ray = mainCamera.camera.ScreenPointToRay(Input.mousePosition);
+	{	
 		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit))
+		Vector3 fwrd = pointerPoint.transform.TransformDirection(Vector3.forward) * 20;
+		Debug.DrawRay(pointer.position, fwrd, Color.blue);
+		if(Physics.Raycast(pointerPoint.position,Vector3.forward, out hit))
 		{
 			if(!optionsActive)
 			{
@@ -215,6 +216,7 @@ public class MainMenuScript : MonoBehaviour
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit))
 		{
+			print (hit.collider.name);
 			if(!optionsActive)
 			{
 				if(hit.collider.name == "playButton")
