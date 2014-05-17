@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+ 
 public class MainMenuScript : MonoBehaviour 
 {
 	public static MainMenuScript 	Instance;
-	
+	  
 
 	public GameObject 				mainMenu;
 	public GameObject				optionsMenu;
@@ -13,7 +13,8 @@ public class MainMenuScript : MonoBehaviour
 	public Transform				sfxSlider;
 	public Transform 				vrOff;
 	public Transform				vrOn;
-	
+	public Transform				pointerPoint;
+
 	private float 					pointerSpeed = 3f;
 	private float 					lastX = 0.0f;
 	private float 					lastY = 0.0f;
@@ -41,8 +42,7 @@ public class MainMenuScript : MonoBehaviour
 		Screen.showCursor = false;
 		lastX = Input.mousePosition.x;
 		lastY = Input.mousePosition.y;
-	}
-	
+	}	
 	// Update is called once per frame
 	void Update () 
 	{
@@ -50,8 +50,7 @@ public class MainMenuScript : MonoBehaviour
 		GetMovement();
 		CheckSelection();
 		
-	}
-	
+	}	
 	void CheckSelection()
 	{
 		if(Input.GetMouseButtonDown(0))
@@ -60,34 +59,10 @@ public class MainMenuScript : MonoBehaviour
 		}
 		
 		else if(Input.GetButtonDown("Action"))
-		{
-			
-			Ray ray = mainCamera.camera.ScreenPointToRay(pointer.position);
-			RaycastHit hit;
-			if(Physics.Raycast(ray, out hit))
-			{
-				if(!optionsActive)
-				{
-					if(hit.collider.name == "playButton")
-					{
-						Application.LoadLevel(2);
-					}
-					else if(hit.collider.name == "optionsButton")
-					{
-						optionsActive = true;
-						mainMenu.SetActive(false);
-						optionsMenu.SetActive(true);
-						
-					}
-					else if(hit.collider.name == "exitButton")
-					{
-						print ("you have exited");
-					}
-				}
-			}
+		{			
+			GetStick();
 		}
-	}
-	
+	}	
 	void GetMovement()
 	{
 		float tempX;
@@ -136,8 +111,7 @@ public class MainMenuScript : MonoBehaviour
 		mainCamera.SetActive(psScript.mainCameraOn);
 	}	
 	void GetMouse()
-	{
-		
+	{		
 		Ray ray = mainCamera.camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit))
@@ -234,5 +208,82 @@ public class MainMenuScript : MonoBehaviour
 		psScript.masterVolume = volNum;
 		psScript.effectsVolume = sfxNum;
 			
+	}
+	void GetStick()
+	{
+		Ray ray = mainCamera.camera.ScreenPointToRay(pointerPoint.position);
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit))
+		{
+			if(!optionsActive)
+			{
+				if(hit.collider.name == "playButton")
+				{
+					Application.LoadLevel(2);
+				}
+				else if(hit.collider.name == "optionsButton")
+				{
+					optionsActive = true;
+					mainMenu.SetActive(false);
+					optionsMenu.SetActive(true);
+					
+				}
+				else if(hit.collider.name == "exitButton")
+				{
+					print ("you have exited");
+				}
+			}
+			
+			else if(optionsMenu.activeSelf)
+			{
+				if(hit.collider.name == "volDown")
+				{
+					volNum -= 0.1f;
+				}
+				
+				else if(hit.collider.name == "volUp")
+				{
+					volNum += 0.1f;
+				}
+				else if(hit.collider.name == "sfxDown")
+				{
+					sfxNum -= 0.1f;
+				}
+				
+				else if(hit.collider.name == "sfxUp")
+				{
+					sfxNum += 0.1f;
+				}
+				
+				else if(hit.collider.name == "vrOffButton" || hit.collider.name == "vrOnButton")
+				{
+					if(!psScript.oculusOn)
+					{
+						psScript.oculusOn = true;
+						psScript.mainCameraOn = false;
+						vrOn.gameObject.SetActive(true);
+						vrOff.gameObject.SetActive(false);
+						
+					}
+					else if(psScript.oculusOn)
+					{
+						psScript.mainCameraOn = true;
+						psScript.oculusOn = false;
+						vrOff.gameObject.SetActive(true);
+						vrOn.gameObject.SetActive(false);
+						
+					}
+					CheckCameras();
+				}
+				
+				else if(hit.collider.name == "backButton")
+				{
+					optionsActive = false;
+					optionsMenu.SetActive(false);
+					mainMenu.SetActive(true);
+				}
+				UpdateSliders();
+			}
+		}
 	}
 }
