@@ -61,6 +61,8 @@ public class MainMenuScript : MonoBehaviour
 		else if(Input.GetButtonDown("Action"))
 		{			
 			GetStick();
+
+		
 		}
 	}	
 	void GetMovement()
@@ -117,6 +119,7 @@ public class MainMenuScript : MonoBehaviour
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit))
 		{
+			print (hit.collider.name);
 			if(!optionsActive)
 			{
 				if(hit.collider.name == "playButton")
@@ -214,9 +217,11 @@ public class MainMenuScript : MonoBehaviour
 	{
 		//Ray ray = mainCamera.camera.ScreenPointToRay(pointerPoint.position);
 		RaycastHit hit;
-		Vector3 fwrd = pointerPoint.transform.TransformDirection(Vector3.forward) * 20;
+		Vector3 fwrd = pointerPoint.transform.TransformDirection(Vector3.down) * 200;
+		Debug.DrawRay (pointerPoint.position, fwrd, Color.magenta);
 		if(Physics.Raycast(pointerPoint.position, fwrd, out hit))
 		{
+
 			print (hit.collider.name);
 			if(!optionsActive)
 			{
