@@ -112,10 +112,10 @@ public class MainMenuScript : MonoBehaviour
 	}	
 	void GetMouse()
 	{	
+	
+		Ray ray = mainCamera.camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
-		Vector3 fwrd = pointerPoint.transform.TransformDirection(Vector3.forward) * 20;
-		Debug.DrawRay(pointer.position, fwrd, Color.blue);
-		if(Physics.Raycast(pointerPoint.position,Vector3.forward, out hit))
+		if(Physics.Raycast(ray, out hit))
 		{
 			if(!optionsActive)
 			{
@@ -212,9 +212,10 @@ public class MainMenuScript : MonoBehaviour
 	}
 	void GetStick()
 	{
-		Ray ray = mainCamera.camera.ScreenPointToRay(pointerPoint.position);
+		//Ray ray = mainCamera.camera.ScreenPointToRay(pointerPoint.position);
 		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit))
+		Vector3 fwrd = pointerPoint.transform.TransformDirection(Vector3.forward) * 20;
+		if(Physics.Raycast(pointerPoint.position, fwrd, out hit))
 		{
 			print (hit.collider.name);
 			if(!optionsActive)
