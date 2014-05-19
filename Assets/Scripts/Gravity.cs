@@ -48,13 +48,13 @@ public class Gravity : MonoBehaviour {
 			//forward backward
 			if( rFront.distance < rMiddle.distance)
 			{
-				Debug.Log ("Adding");
+				//Debug.Log ("Adding");
 				vAngle.x -=(rMiddle.distance - rFront.distance);
 			}
 
 			if( rFront.distance > rMiddle.distance)
 			{
-				Debug.Log ("Subbing");
+				//Debug.Log ("Subbing");
 				vAngle.x += (rFront.distance - rMiddle.distance);
 			}
 
