@@ -6,7 +6,7 @@ public class TutorialScript : MonoBehaviour
 
 	public static TutorialScript Instance;
 
-	private TestScript testScript;
+	private PlayerMove playermove;
 	private bool check1 = false;
 	private bool check2 = false;
 	private bool check3 = false;
@@ -24,8 +24,8 @@ public class TutorialScript : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
-		testScript = player.GetComponent<TestScript>();
-		testScript.stopMove =true;
+		playermove = player.GetComponent<PlayerMove>();
+		playermove.stopMove =true;
 		distances = new float[5]; 
 	}
 	private void GetDistances()
@@ -40,12 +40,12 @@ public class TutorialScript : MonoBehaviour
 		if(distances[0] < 150.0f && distances[0] > 50.0f && !check1)
 		{	
 			check1 = true;
-			testScript.stopMove = true;
+			playermove.stopMove = true;
 			index = 2;
 		}
 		else if(distances[0] < 50.0f && !check2)
 		{
-			testScript.stopMove = true;
+			playermove.stopMove = true;
 			check2 = true;
 			index = 3;
 		}
@@ -53,19 +53,19 @@ public class TutorialScript : MonoBehaviour
 		if(distances[1] < 50.0f && !check3)
 		{
 		
-			testScript.stopMove = true;
+			playermove.stopMove = true;
 			check3 = true;
 			index = 4;
 		}
 		if(distances[3] < 50.0f && !check4)
 		{	
-			testScript.stopMove = true;
+			playermove.stopMove = true;
 			check4 = true;
 			index = 5;
 		}
 		if(distances[4] < 10.0f && !check5)
 		{
-			testScript.stopMove = true;
+			playermove.stopMove = true;
 			check5 = true;
 			index = 8;
 		}
@@ -120,7 +120,7 @@ public class TutorialScript : MonoBehaviour
 			}
 			case 6:
 			{
-				testScript.stopMove = true;
+				playermove.stopMove = true;
 				player.audio.clip = null;
 				seconds = 20f;
 				StartCoroutine("AudioWait3", seconds);
@@ -129,7 +129,7 @@ public class TutorialScript : MonoBehaviour
 			}
 			case 7:
 			{
-				testScript.stopMove = true;
+				playermove.stopMove = true;
 				player.audio.clip = null;
 				seconds = 7f;
 				StartCoroutine("AudioWait5", seconds);
@@ -167,7 +167,7 @@ public class TutorialScript : MonoBehaviour
 		player.audio.volume = 1.0f;
 		player.audio.PlayOneShot(tutorialClips[index]);
 		yield return new WaitForSeconds(10.0f);
-		testScript.stopMove = false;
+		playermove.stopMove = false;
 		index = -1;
 	}
 	IEnumerator AudioWait3(float secs)
@@ -175,7 +175,7 @@ public class TutorialScript : MonoBehaviour
 		player.audio.volume = 1.0f;
 		player.audio.PlayOneShot(tutorialClips[index]);
 		yield return new WaitForSeconds(secs);
-		testScript.stopMove = false;
+		playermove.stopMove = false;
 		index = -1;
 	}
 	
@@ -191,7 +191,7 @@ public class TutorialScript : MonoBehaviour
 		player.audio.volume = 1.0f;
 		player.audio.PlayOneShot(tutorialClips[index]);
 		yield return new WaitForSeconds(secs);
-		testScript.stopMove = false;
+		playermove.stopMove = false;
 		index = -1;
 	}
 	

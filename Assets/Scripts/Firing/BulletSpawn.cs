@@ -8,7 +8,7 @@ public class BulletSpawn : MonoBehaviour
 	public GameObject muzzleFlash;
 	public ParticleSystem smoke;
 	//Debug
-	private TestScript test;
+	private PlayerMove moving;
 	//Rate of fire
 	public float ShellFireRate;
 	//Firing mechanisms
@@ -23,7 +23,7 @@ public class BulletSpawn : MonoBehaviour
 	GameObject Shell;
 	// Use this for initialization
 	void Awake () {
-		test = player.GetComponent<TestScript>();
+		moving = player.GetComponent<PlayerMove>();
 //		Debug.Log("Accessed");
 
 	}
@@ -47,7 +47,7 @@ public class BulletSpawn : MonoBehaviour
 	
 		//Fires stuff
 		TankFire = false;
-		if(!test.stopMove)
+		if(!moving.stopMove)
 		{
 			if(Input.GetAxis("Fire") > 0.05f && Time.time > NextShell)
 			{
