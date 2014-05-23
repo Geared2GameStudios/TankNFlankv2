@@ -26,9 +26,7 @@ public class MainMenuScript : MonoBehaviour
 	private GameObject				mainCamera;
 	private GameObject 				ovrCamera;
 	private PlayerSettingsScript	psScript;
-
 	public AudioClip 				menuClick;
-	public bool 					startClick = false;
 	
 	
 	
@@ -121,26 +119,22 @@ public class MainMenuScript : MonoBehaviour
 		mainCamera.SetActive(psScript.mainCameraOn);
 	}	
 	void GetMouse()
-	{		
+	{	
 		Ray ray = mainCamera.camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit))
 		{
-			if (startClick) 
-			{
-				PlaySound();
-				startClick = false;
-			}
-
 			print (hit.collider.name);
 			if(!optionsActive)
 			{
 				if(hit.collider.name == "playButton")
 				{
+					PlaySound ();
 					Application.LoadLevel(2);
 				}
 				else if(hit.collider.name == "optionsButton")
 				{
+					PlaySound ();
 					optionsActive = true;
 					mainMenu.SetActive(false);
 					optionsMenu.SetActive(true);
@@ -148,6 +142,7 @@ public class MainMenuScript : MonoBehaviour
 				}
 				else if(hit.collider.name == "exitButton")
 				{
+					PlaySound ();
 					Application.Quit();
 				}
 			}
@@ -156,20 +151,24 @@ public class MainMenuScript : MonoBehaviour
 			{
 				if(hit.collider.name == "volDown")
 				{
+					PlaySound ();
 					volNum -= 0.1f;
 				}
 				
 				else if(hit.collider.name == "volUp")
 				{
+					PlaySound ();
 					volNum += 0.1f;
 				}
 				else if(hit.collider.name == "sfxDown")
 				{
+					PlaySound ();
 					sfxNum -= 0.1f;
 				}
 				
 				else if(hit.collider.name == "sfxUp")
 				{
+					PlaySound ();
 					sfxNum += 0.1f;
 				}
 				
@@ -177,6 +176,7 @@ public class MainMenuScript : MonoBehaviour
 				{
 					if(!psScript.oculusOn)
 					{
+						PlaySound ();
 						psScript.oculusOn = true;
 						psScript.mainCameraOn = false;
 						vrOn.gameObject.SetActive(true);
@@ -185,6 +185,7 @@ public class MainMenuScript : MonoBehaviour
 					}
 					else if(psScript.oculusOn)
 					{
+						PlaySound ();
 						psScript.mainCameraOn = true;
 						psScript.oculusOn = false;
 						vrOff.gameObject.SetActive(true);
@@ -196,7 +197,7 @@ public class MainMenuScript : MonoBehaviour
 				
 				else if(hit.collider.name == "backButton")
 				{
-					startClick = true;
+					PlaySound ();
 					optionsActive = false;
 					optionsMenu.SetActive(false);
 					mainMenu.SetActive(true);
@@ -235,16 +236,17 @@ public class MainMenuScript : MonoBehaviour
 		Debug.DrawRay (pointerPoint.position, fwrd, Color.magenta);
 		if(Physics.Raycast(pointerPoint.position, fwrd, out hit))
 		{
-
 			print (hit.collider.name);
 			if(!optionsActive)
 			{
 				if(hit.collider.name == "playButton")
 				{
+					PlaySound ();
 					Application.LoadLevel(2);
 				}
 				else if(hit.collider.name == "optionsButton")
 				{
+					PlaySound ();
 					optionsActive = true;
 					mainMenu.SetActive(false);
 					optionsMenu.SetActive(true);
@@ -252,6 +254,7 @@ public class MainMenuScript : MonoBehaviour
 				}
 				else if(hit.collider.name == "exitButton")
 				{
+					PlaySound ();
 					print ("you have exited");
 				}
 			}
@@ -260,20 +263,24 @@ public class MainMenuScript : MonoBehaviour
 			{
 				if(hit.collider.name == "volDown")
 				{
+					PlaySound ();
 					volNum -= 0.1f;
 				}
 				
 				else if(hit.collider.name == "volUp")
 				{
+					PlaySound ();
 					volNum += 0.1f;
 				}
 				else if(hit.collider.name == "sfxDown")
 				{
+					PlaySound ();
 					sfxNum -= 0.1f;
 				}
 				
 				else if(hit.collider.name == "sfxUp")
 				{
+					PlaySound ();
 					sfxNum += 0.1f;
 				}
 				
@@ -281,6 +288,7 @@ public class MainMenuScript : MonoBehaviour
 				{
 					if(!psScript.oculusOn)
 					{
+						PlaySound ();
 						psScript.oculusOn = true;
 						psScript.mainCameraOn = false;
 						vrOn.gameObject.SetActive(true);
@@ -289,6 +297,7 @@ public class MainMenuScript : MonoBehaviour
 					}
 					else if(psScript.oculusOn)
 					{
+						PlaySound ();
 						psScript.mainCameraOn = true;
 						psScript.oculusOn = false;
 						vrOff.gameObject.SetActive(true);
@@ -300,6 +309,7 @@ public class MainMenuScript : MonoBehaviour
 				
 				else if(hit.collider.name == "backButton")
 				{
+					PlaySound ();
 					optionsActive = false;
 					optionsMenu.SetActive(false);
 					mainMenu.SetActive(true);
