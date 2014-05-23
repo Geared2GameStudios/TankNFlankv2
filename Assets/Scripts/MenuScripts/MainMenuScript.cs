@@ -26,6 +26,9 @@ public class MainMenuScript : MonoBehaviour
 	private GameObject				mainCamera;
 	private GameObject 				ovrCamera;
 	private PlayerSettingsScript	psScript;
+
+	public AudioClip 				menuClick;
+	public bool 					startClick = false;
 	
 	
 	
@@ -43,13 +46,18 @@ public class MainMenuScript : MonoBehaviour
 		lastX = Input.mousePosition.x;
 		lastY = Input.mousePosition.y;
 	}	
+
+	public void PlaySound()
+	{
+		this.gameObject.audio.PlayOneShot (menuClick);
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
 		CheckCameras();
 		GetMovement();
-		CheckSelection();
-		
+		CheckSelection();		
 	}	
 	void CheckSelection()
 	{
@@ -113,12 +121,17 @@ public class MainMenuScript : MonoBehaviour
 		mainCamera.SetActive(psScript.mainCameraOn);
 	}	
 	void GetMouse()
-	{	
-	
+	{		
 		Ray ray = mainCamera.camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit))
 		{
+			if (startClick) 
+			{
+				PlaySound();
+				startClick = false;
+			}
+
 			print (hit.collider.name);
 			if(!optionsActive)
 			{
@@ -183,6 +196,7 @@ public class MainMenuScript : MonoBehaviour
 				
 				else if(hit.collider.name == "backButton")
 				{
+					startClick = true;
 					optionsActive = false;
 					optionsMenu.SetActive(false);
 					mainMenu.SetActive(true);
