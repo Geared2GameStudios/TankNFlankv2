@@ -11,7 +11,7 @@ public class JeepController : MonoBehaviour {
 	public bool 		oneTimeOff = false;
 	private supportJeep spjeep;
 	private TutorialScript tut;
-	private TestScript	test;
+	private PlayerMove	test;
 	public float 		coolDown = 5.0f;
 	public float 		currentTime = 0.0f;
 	
@@ -20,7 +20,7 @@ public class JeepController : MonoBehaviour {
 	{
 		spjeep = jeep.GetComponent<supportJeep>();
 		tut = this.GetComponent<TutorialScript>();
-		test = player.GetComponent<TestScript>();
+		test = player.GetComponent<PlayerMove>();
 	}
 	
 	// Update is called once per frame
