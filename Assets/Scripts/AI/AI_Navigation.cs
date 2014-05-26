@@ -46,14 +46,14 @@ public class AI_Navigation : MonoBehaviour {
 		isNear = false;
 		isDetected = false;		
 	}
-
+	
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		if(!deactivate && !test.stopMove)
 		{
-			Debug.DrawRay (turret.position, turret.forward, Color.magenta);
+			Debug.DrawRay (turret.position, turret.forward*100, Color.magenta);
 			if (currentNode < waypoints.Length) 
 			{
 				TransverseWaypoints();
@@ -80,8 +80,7 @@ public class AI_Navigation : MonoBehaviour {
 				LastPlayerSighting = player.transform.position;
 			}
 			
-			else if (/*Vector3.Dot (playerDirection.normalized, turret.forward) > 0 
-			         &&*/ Physics.Raycast(turret.position,turret.forward,out hit))
+			else if (Physics.Raycast(turret.position,turret.forward*100,out hit))
 			{
 				if (hit.collider.tag == "Player")
 				{
@@ -92,6 +91,7 @@ public class AI_Navigation : MonoBehaviour {
 				}
 				else
 				{
+					turretSweep();
 					isDetected = false;
 				}
 			} 
@@ -106,10 +106,10 @@ public class AI_Navigation : MonoBehaviour {
 			turretSweep();
 		}
 		if (isNear && !isDetected) {
-						
-						npc.destination = LastPlayerSighting;
-						turretSweep ();
-				}
+			
+			npc.destination = LastPlayerSighting;
+			turretSweep ();
+		}
 		
 	}
 	
@@ -122,10 +122,10 @@ public class AI_Navigation : MonoBehaviour {
 			npc.Stop ();
 		else
 			npc.destination = player.transform.position;
-
+		
 		if (Time.time > attackTime) 
 		{
-
+			
 			stats.playerHealth -= enemy.damage;
 			attackTime = Time.time + attackCD;
 		}
