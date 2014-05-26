@@ -48,20 +48,22 @@ public class BattleMusic : MonoBehaviour {
 
 	void Update()
 	{
-		Distance ();
-
-		if (fDistance < 100) 
+		if (enemy != null)
 		{
-			if (!trackPlaying)
+			Distance ();
+			if (fDistance < 100) 
 			{
-				PlaySound ();
-				trackPlaying = true;
-			}
+				if (!trackPlaying)
+				{
+					PlaySound ();
+					trackPlaying = true;
+				}
 
-			fadeIn ();
-		} 
-		else
-			fadeOut ();
+				fadeIn ();
+			}
+			else
+				fadeOut ();
+		}
 
 	}
 
