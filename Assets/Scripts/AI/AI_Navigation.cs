@@ -19,12 +19,6 @@ public class AI_Navigation : MonoBehaviour {
 	public GameObject player;
 	public Transform turret;
 	public float attackCD;
-
-	// Sound Variables
-	public AudioClip battleTrack;
-	public float audio1Volume = 1.0f;
-	public float audio2Volume = 0.0f;
-	public bool trackPlaying = false;	
 	
 	bool waypointLoop = true;
 	
@@ -50,33 +44,9 @@ public class AI_Navigation : MonoBehaviour {
 		enemy = this.GetComponent<enemyHealth>();
 		test = player.GetComponent<PlayerMove>();
 		isNear = false;
-		isDetected = false;
-		
+		isDetected = false;		
 	}
 
-	void PlaySound()
-	{
-		audio.clip = battleTrack;
-		audio.Play();
-	}
-
-	void fadeIn()
-	{
-		if (audio2Volume < 1.0f) 
-		{
-			audio2Volume += 0.1f * Time.deltaTime;
-			audio.volume = audio2Volume;
-		}
-	}
-
-	void fadeOut()
-	{
-		if (audio1Volume > 0.1f) 
-		{
-			audio1Volume -= 0.1f * Time.deltaTime;
-			audio.volume = audio1Volume;
-		}
-	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -105,12 +75,6 @@ public class AI_Navigation : MonoBehaviour {
 		if (playerDirection.sqrMagnitude < attackRange)
 		{
 			if (isNear && isDetected){
-				if (!trackPlaying)
-				{
-					PlaySound ();
-					trackPlaying = true;
-				}
-				fadeIn ();
 				lookAt();
 				attack ();
 				LastPlayerSighting = player.transform.position;
@@ -128,7 +92,6 @@ public class AI_Navigation : MonoBehaviour {
 				}
 				else
 				{
-					fadeOut ();
 					isDetected = false;
 				}
 			} 
@@ -143,16 +106,10 @@ public class AI_Navigation : MonoBehaviour {
 			turretSweep();
 		}
 		if (isNear && !isDetected) {
-						if (!trackPlaying)
-						{
-							PlaySound ();
-							trackPlaying = true;
-						}
-						fadeIn ();
+						
 						npc.destination = LastPlayerSighting;
 						turretSweep ();
-				} else
-						fadeOut ();
+				}
 		
 	}
 	
