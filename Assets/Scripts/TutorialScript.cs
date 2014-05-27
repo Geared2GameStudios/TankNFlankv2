@@ -184,7 +184,7 @@ public class TutorialScript : MonoBehaviour
 		player.audio.volume = 1.0f;
 		player.audio.PlayOneShot(tutorialClips[index]);
 		yield return new WaitForSeconds(secs);
-		Application.LoadLevel(0);
+	
 	}
 	IEnumerator AudioWait5(float secs)
 	{
