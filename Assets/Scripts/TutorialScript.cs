@@ -153,6 +153,10 @@ public class TutorialScript : MonoBehaviour
 		if(index != -1)
 			SwitchSounds();
 		
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel(0);
+		}
 
 	}
 	 IEnumerator AudioWait1()
