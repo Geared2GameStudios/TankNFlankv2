@@ -65,7 +65,7 @@ public class TutorialScript : MonoBehaviour
 		}
 		if(distances[4] < 10.0f && !check5)
 		{
-			playermove.stopMove = true;
+			//playermove.stopMove = true;
 			check5 = true;
 			index = 8;
 		}
