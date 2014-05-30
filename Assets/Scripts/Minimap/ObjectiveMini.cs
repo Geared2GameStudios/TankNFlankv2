@@ -7,7 +7,7 @@ public class ObjectiveMini : MonoBehaviour {
 	public GameObject Cylynder;
 	
 
-	private destroyObject destroyobject;
+	//private destroyObject destroyobject;
 	int ObjectiveNumber;
 	Vector3 Direction;
 	Quaternion Rotation;
@@ -24,8 +24,8 @@ public class ObjectiveMini : MonoBehaviour {
 	void Update () {
 
 	
-		destroyobject = Cylynder.GetComponent<destroyObject>();
-		if(destroyobject.hit)
+		//destroyobject = Cylynder.GetComponent<destroyObject>();
+		if(Cylynder.Equals (null))
 		{
 			ObjectiveNumber++;
 			Cylynder = Objective[ObjectiveNumber];
