@@ -30,6 +30,12 @@ public class bulletCollision : MonoBehaviour {
 		{
 			other.gameObject.GetComponent<destroyObject> ().hit = true;
 		}
+
+		if (other.transform.tag == "Base") 
+		{
+			other.gameObject.GetComponent<Base_Alarm>().hit = true;
+			other.gameObject.GetComponent<destroyObject>().hit = true;
+		}
 	
 	  if (other.transform.tag == "enemy") 
 		{

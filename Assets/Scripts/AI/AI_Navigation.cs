@@ -15,6 +15,7 @@ public class AI_Navigation : MonoBehaviour {
 	public bool deactivate;
 	public bool isDetected;
 	public bool isNear;
+	public bool alarm;
 	public Transform[] waypoints;
 	public GameObject player;
 	public Transform turret;
@@ -45,6 +46,7 @@ public class AI_Navigation : MonoBehaviour {
 		test = player.GetComponent<PlayerMove>();
 		isNear = false;
 		isDetected = false;		
+		alarm = false;
 	}
 	
 	
@@ -63,7 +65,9 @@ public class AI_Navigation : MonoBehaviour {
 			{
 				currentNode = 0;
 				
-			}			
+			}	
+			if(alarm)
+				attack();
 		}		
 	}
 	
@@ -80,7 +84,7 @@ public class AI_Navigation : MonoBehaviour {
 				LastPlayerSighting = player.transform.position;
 			}
 			
-			else if (Physics.Raycast(turret.position,turret.forward*100,out hit))
+			else if (Physics.Raycast(turret.position,turret.forward*100,out hit)|| Vector3.Distance(player.transform.position,this.transform.position) < 100 )
 			{
 				if (hit.collider.tag == "Player")
 				{
@@ -117,6 +121,7 @@ public class AI_Navigation : MonoBehaviour {
 	{
 		Vector3 offSet = player.transform.position - turret.transform.position;
 		float sqrLen = offSet.sqrMagnitude;
+		lookAt ();
 		
 		if (sqrLen < 500)
 			npc.Stop ();

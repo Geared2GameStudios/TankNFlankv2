@@ -7,35 +7,41 @@ public class destroyObject : MonoBehaviour {
 	public GameObject currentLightPillar;
 	public GameObject nextLightPillar;
 	public ParticleSystem smoke;
-	public bool deactivate;
+	//public bool deactivate;
 	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		hit = false;
-		deactivate =  false;
+		//deactivate =  false;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-				if (nextLightPillar == null) {
-						deactivate = true;
-				}
+				//if (nextLightPillar == null) {
+				//		deactivate = true;
+				//}
 				if (hit) {
-			
-						//smoke.Play ();
-						if (!deactivate) {
+
+						
 								currentLightPillar.SetActive (false);
 								nextLightPillar.SetActive (true);
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
 								
-						}
+						
 							if (this.gameObject.name == "lastObjective"){
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
 								
 								}
+							
+							if (this.gameObject.tag == "Base")
+							{
+								this.gameObject.GetComponent<Base_Alarm>().hit = true;
+								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
+								TurboSlice.instance.shatter (gameObject, 3);
+							}
 				}
 		}
 }
