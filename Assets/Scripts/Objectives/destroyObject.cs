@@ -38,7 +38,6 @@ public class destroyObject : MonoBehaviour {
 							
 							if (this.gameObject.tag == "Base")
 							{
-								this.gameObject.GetComponent<Base_Alarm>().hit = true;
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
 							}

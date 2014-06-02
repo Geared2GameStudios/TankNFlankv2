@@ -29,12 +29,19 @@ public class bulletCollision : MonoBehaviour {
 		if (other.transform.tag == "objectiveObject")
 		{
 			other.gameObject.GetComponent<destroyObject> ().hit = true;
+			DestroyObject(this.gameObject);
 		}
 
 		if (other.transform.tag == "Base") 
 		{
-			other.gameObject.GetComponent<Base_Alarm>().hit = true;
 			other.gameObject.GetComponent<destroyObject>().hit = true;
+			DestroyObject(this.gameObject);
+		}
+		
+		if (other.transform.tag == "alarm")
+		{
+			other.gameObject.GetComponent<alarm>().bAlarm = true;
+			//DestroyObject(this.gameObject);
 		}
 	
 	  if (other.transform.tag == "enemy") 
@@ -47,6 +54,7 @@ public class bulletCollision : MonoBehaviour {
 			tut.index = 7;
 			
 			}
+			DestroyObject(this.gameObject);
 		
 				
 		}

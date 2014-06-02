@@ -15,9 +15,9 @@ public class AI_Navigation : MonoBehaviour {
 	public bool deactivate;
 	public bool isDetected;
 	public bool isNear;
-	public bool alarm;
 	public Transform[] waypoints;
 	public GameObject player;
+	public GameObject Alarm;
 	public Transform turret;
 	public float attackCD;
 	
@@ -46,7 +46,7 @@ public class AI_Navigation : MonoBehaviour {
 		test = player.GetComponent<PlayerMove>();
 		isNear = false;
 		isDetected = false;		
-		alarm = false;
+
 	}
 	
 	
@@ -66,8 +66,6 @@ public class AI_Navigation : MonoBehaviour {
 				currentNode = 0;
 				
 			}	
-			if(alarm)
-				attack();
 		}		
 	}
 	
@@ -75,6 +73,12 @@ public class AI_Navigation : MonoBehaviour {
 	{
 		Vector3 npcDirection = waypoints [currentNode].position - this.transform.position;
 		Vector3 playerDirection = player.transform.position - this.transform.position;
+
+		if (Alarm.gameObject.GetComponent<alarm> ().bAlarm == true) 
+		{
+			npc.destination = player.transform.position;
+		}
+
 		
 		if (playerDirection.sqrMagnitude < attackRange)
 		{
@@ -102,10 +106,10 @@ public class AI_Navigation : MonoBehaviour {
 			
 		}
 		
-		else if (npcDirection.magnitude < 8) {
+		else if (npcDirection.magnitude < 8 || Alarm.gameObject.GetComponent<alarm> ().bAlarm == false) {
 			currentNode++; // advanced the waypoint array
 			turretSweep();
-		} else if(!isNear) {
+		} else if(!isNear&& Alarm.gameObject.GetComponent<alarm> ().bAlarm == false) {
 			npc.destination = waypoints [currentNode].position; // moves npc to waypoint
 			turretSweep();
 		}
