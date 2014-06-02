@@ -5,7 +5,9 @@ public class PlayerMove : MonoBehaviour {
 
 	public ParticleSystem leftTreadSystem;
 	public ParticleSystem rightTreadSystem;
-
+	public Transform 		skybox;
+	public GameObject		laterLevel;
+	public GameObject 		currentLevel;
 	private  CharacterController controller;
 	private float MovementSpeed = 0.5f;
 	private float Acceleration = 1.02f;
@@ -13,7 +15,7 @@ public class PlayerMove : MonoBehaviour {
 	private float TurnSpeed = 50.0f;
 	private Vector3 Direction;
 	public bool stopMove = false;
-
+	private float Distance2Terrain = 0f;
 	public AudioClip[] tankMovement;
 	private int iSound;
 	// Use this for initialization
@@ -29,6 +31,20 @@ public class PlayerMove : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		skybox.position = this.transform.position;
+		float tempDistance = Vector3.Distance(this.transform.position, laterLevel.transform.position);
+		if(tempDistance <= 100f)
+		{
+			currentLevel.SetActive(false);
+		}
+		else if(tempDistance <= 1000)
+		{
+			laterLevel.SetActive(true);
+		}
+
+
+		
+
 		if(!stopMove)
 		{
 		if(Input.GetAxis ("Vertical") > 0)
