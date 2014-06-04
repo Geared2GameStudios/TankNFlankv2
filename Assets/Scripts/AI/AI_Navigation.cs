@@ -12,11 +12,14 @@ public class AI_Navigation : MonoBehaviour {
 	private enemyHealth enemy;
 	private Vector3 LastPlayerSighting;
 	
+	public ParticleSystem smoke;
+	
 	public bool deactivate;
 	public bool isDetected;
 	public bool isNear;
 	public Transform[] waypoints;
 	public GameObject player;
+	public GameObject muzzleFlash;
 	public GameObject Alarm;
 	public Transform turret;
 	public float attackCD;
@@ -46,7 +49,7 @@ public class AI_Navigation : MonoBehaviour {
 		test = player.GetComponent<PlayerMove>();
 		isNear = false;
 		isDetected = false;		
-
+		
 	}
 	
 	
@@ -73,14 +76,14 @@ public class AI_Navigation : MonoBehaviour {
 	{
 		Vector3 npcDirection = waypoints [currentNode].position - this.transform.position;
 		Vector3 playerDirection = player.transform.position - this.transform.position;
-
+		
 		if (Alarm.gameObject.GetComponent<alarm> ().bAlarm == true) 
 		{
 			npc.destination = player.transform.position;
 		}
-
 		
-		if (playerDirection.sqrMagnitude < attackRange)
+		
+		else if (playerDirection.sqrMagnitude < attackRange)
 		{
 			if (isNear && isDetected){
 				lookAt();
@@ -106,14 +109,14 @@ public class AI_Navigation : MonoBehaviour {
 			
 		}
 		
-		else if (npcDirection.magnitude < 8 || Alarm.gameObject.GetComponent<alarm> ().bAlarm == false) {
+		else if (npcDirection.magnitude < 8) {
 			currentNode++; // advanced the waypoint array
 			turretSweep();
 		} else if(!isNear&& Alarm.gameObject.GetComponent<alarm> ().bAlarm == false) {
 			npc.destination = waypoints [currentNode].position; // moves npc to waypoint
 			turretSweep();
 		}
-		if (isNear && !isDetected) {
+		else if (isNear && !isDetected) {
 			
 			npc.destination = LastPlayerSighting;
 			turretSweep ();
@@ -134,7 +137,8 @@ public class AI_Navigation : MonoBehaviour {
 		
 		if (Time.time > attackTime) 
 		{
-			
+			muzzleFlash.particleEmitter.Emit ();
+			smoke.Play ();
 			stats.playerHealth -= enemy.damage;
 			attackTime = Time.time + attackCD;
 		}

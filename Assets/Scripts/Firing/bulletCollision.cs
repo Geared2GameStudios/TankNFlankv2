@@ -51,7 +51,7 @@ public class bulletCollision : MonoBehaviour {
 			{
 			clone = Instantiate(clonePrefab, other.transform.position, other.transform.localRotation) as Transform;
 			Destroy(other.gameObject);
-			tut.index = 7;
+			//tut.index = 7;
 			
 			}
 			DestroyObject(this.gameObject);
