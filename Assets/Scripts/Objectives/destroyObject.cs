@@ -7,20 +7,20 @@ public class destroyObject : MonoBehaviour {
 	public GameObject currentLightPillar;
 	public GameObject nextLightPillar;
 	public ParticleSystem smoke;
-	//public bool deactivate;
+	public bool deactivate;
 	
 	// Use this for initialization
 	void Awake () {
 		hit = false;
-		//deactivate =  false;
+		deactivate =  false;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-				//if (nextLightPillar == null) {
-				//		deactivate = true;
-				//}
+				if (nextLightPillar == null) {
+						deactivate = true;
+				}
 				if (hit) {
 
 						
