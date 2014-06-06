@@ -4,7 +4,7 @@ using System.Collections;
 public class ObjectiveMini : MonoBehaviour {
 
 	public GameObject Player;
-	public GameObject Cylynder;
+	private GameObject Cylynder;
 	
 
 	//private destroyObject destroyobject;
@@ -14,10 +14,7 @@ public class ObjectiveMini : MonoBehaviour {
 	public GameObject[] Objective;
 	// Use this for initialization
 	void Start () {
-		Player = GameObject.FindGameObjectWithTag ("Player");
-		Cylynder = GameObject.FindGameObjectWithTag ("firstObjective");//GameObject.GetComponent("destroyObject");
-		ObjectiveNumber = 0;
-		//destroyobject = GetComponent<destroyObject>();
+
 	}
 	
 	// Update is called once per frame
@@ -27,12 +24,17 @@ public class ObjectiveMini : MonoBehaviour {
 		//destroyobject = Cylynder.GetComponent<destroyObject>();
 		if(Cylynder.Equals (null))
 		{
-			ObjectiveNumber++;
+
 			Cylynder = Objective[ObjectiveNumber];
+			ObjectiveNumber++;
+			if(ObjectiveNumber > Objective.GetLength (0))
+				renderer.enabled = false;
 		}
 
-
+	
 		//Get's direction, points that direction
+
+
 		Direction = (Cylynder.transform.position - Player.transform.position).normalized;
 
 		float temp = Vector3.Angle (Player.transform.forward, Direction);

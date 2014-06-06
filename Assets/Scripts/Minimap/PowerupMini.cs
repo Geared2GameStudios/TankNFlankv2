@@ -5,16 +5,14 @@ using System.Collections;
 public class PowerupMini : MonoBehaviour {
 
 	public GameObject Player;
-	public GameObject PowerUp;
+	private GameObject PowerUp;
 	public GameObject[] PowerUps;
 	Vector3 Direction;
 
 	float LastPowerUpDistance;
-	public GameObject[] Powerups;
 	// Use this for initialization
 	void Start () {
-		Player = GameObject.FindGameObjectWithTag ("Player");
-		PowerUps = GameObject.FindGameObjectsWithTag ("PowerUp");
+
 		LastPowerUpDistance = 1000;
 		PowerUp = null;
 		//destroyobject = GetComponent<destroyObject>();
@@ -23,7 +21,7 @@ public class PowerupMini : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//Debug.Log (PowerUps[0].name);
+		Debug.Log (PowerUps.GetLength(0));
 
 		for(int i = 0; i < PowerUps.GetLength (0); i++)
 		{	if(PowerUps[i] != null)
@@ -33,7 +31,7 @@ public class PowerupMini : MonoBehaviour {
 					LastPowerUpDistance = (PowerUps[i].transform.position - Player.transform.position).magnitude;
 				}
 		}
-		//Debug.Log (PowerUp.name);
+
 		if(PowerUp == null || PowerUp.Equals (null))
 		{
 			renderer.enabled = false;
@@ -42,8 +40,7 @@ public class PowerupMini : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log (PowerUp == null);
-			Debug.Log (PowerUp.Equals (null));
+
 			renderer.enabled = true;
 			//Get's direction, points that direction
 			Direction = (PowerUp.transform.position - Player.transform.position).normalized;
