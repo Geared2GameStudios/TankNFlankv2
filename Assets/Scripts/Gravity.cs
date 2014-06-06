@@ -46,34 +46,37 @@ public class Gravity : MonoBehaviour {
 			Vector3 vAngle = transform.eulerAngles;
 
 			//forward backward
+			/*
 			if( rFront.distance < rMiddle.distance)
 			{
-				//Debug.Log ("Adding");
-				vAngle.x -=(rMiddle.distance - rFront.distance);
+				Debug.Log ("Adding");
+				vAngle.x +=(rFront.distance - rMiddle.distance)*8;
 			}
 
 			if( rFront.distance > rMiddle.distance)
 			{
-				//Debug.Log ("Subbing");
-				vAngle.x += (rFront.distance - rMiddle.distance);
-			}
+				Debug.Log ("Subbing");
+				vAngle.x += (rFront.distance - rMiddle.distance)*8;
+			}*/
+			transform.forward = Vector3.Slerp (transform.forward,rFront.point - rMiddle.point, Time.deltaTime*20);
 
 			//Left and right
 			Quaternion setrotation = new Quaternion();
 			setrotation = Quaternion.LookRotation (transform.forward, rMiddle.normal);
 
 			//Makes sure the object doesn't get angled too far
-			if(vAngle.x < 340 && vAngle.x > 300)
+			if(vAngle.x < 330 && vAngle.x > 300)
 			{
 				Debug.Log ("x+"+vAngle.x);
 				vAngle.x = 340;
 			}
-			else if (vAngle.x > 30 && vAngle.x < 90 )
+			else if (vAngle.x > 40 && vAngle.x < 90 )
 			{
 				vAngle.x = 30;
 				Debug.Log (vAngle.x);
 			}
-
+		
+			Debug.Log (vAngle.x);
 
 			transform.eulerAngles = vAngle;
 			transform.rotation = Quaternion.RotateTowards( transform.rotation, setrotation, Time.deltaTime * 20f);
