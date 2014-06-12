@@ -58,7 +58,7 @@ public class bulletCollision : MonoBehaviour {
 		
 				
 		}
-	 if(other.gameObject.transform.tag == "barrier" || other.gameObject.transform.name == "Barrier")
+	 if(other.gameObject.transform.tag == "barrier" )
 		{
 			print("hit a wall ");
 			Destroy(this.gameObject);
