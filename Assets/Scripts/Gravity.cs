@@ -67,16 +67,16 @@ public class Gravity : MonoBehaviour {
 			//Makes sure the object doesn't get angled too far
 			if(vAngle.x < 330 && vAngle.x > 300)
 			{
-				Debug.Log ("x+"+vAngle.x);
+			
 				vAngle.x = 340;
 			}
 			else if (vAngle.x > 40 && vAngle.x < 90 )
 			{
 				vAngle.x = 30;
-				Debug.Log (vAngle.x);
+			
 			}
 		
-			Debug.Log (vAngle.x);
+			
 
 			transform.eulerAngles = vAngle;
 			transform.rotation = Quaternion.RotateTowards( transform.rotation, setrotation, Time.deltaTime * 20f);

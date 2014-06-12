@@ -21,7 +21,7 @@ public class PowerupMini : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Debug.Log (PowerUps.GetLength(0));
+	
 
 		for(int i = 0; i < PowerUps.GetLength (0); i++)
 		{	if(PowerUps[i] != null)
