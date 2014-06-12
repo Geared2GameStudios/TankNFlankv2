@@ -68,15 +68,6 @@ public class SliderScript : MonoBehaviour {
 			reticule.gameObject.SetActive(false);
 		}
 		
-		if(slideOut)
-		{
-			Slider.transform.localPosition = new Vector3(Mathf.MoveTowards(Slider.transform.localPosition.x, open, 
-			   10.0f * Time.deltaTime), Slider.transform.localPosition.y, Slider.transform.localPosition.z);
-		}
-		else
-		{
-			Slider.transform.localPosition = new Vector3(Mathf.MoveTowards(Slider.transform.localPosition.x, closed, 
-			   10.0f * Time.deltaTime), Slider.transform.localPosition.y, Slider.transform.localPosition.z);
-		}
+		
 	}
 }
