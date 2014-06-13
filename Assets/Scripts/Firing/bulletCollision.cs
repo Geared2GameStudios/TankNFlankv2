@@ -47,13 +47,13 @@ public class bulletCollision : MonoBehaviour {
 	  if (other.transform.tag == "enemy") 
 		{
 			eHealth.health -= pStats.playerDamage;
-			if (eHealth.health <= 0)
-			{
-			clone = Instantiate(clonePrefab, other.transform.position, other.transform.localRotation) as Transform;
-			Destroy(other.gameObject);
+			//if (eHealth.health <= 0)
+			//{
+			//clone = Instantiate(clonePrefab, other.transform.position, other.transform.localRotation) as Transform;
+			//Destroy(other.gameObject);
 			//tut.index = 7;
 			
-			}
+			//}
 			DestroyObject(this.gameObject);
 		
 				
