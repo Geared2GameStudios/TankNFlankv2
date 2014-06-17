@@ -11,6 +11,6 @@ public class BaseTurretScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.localRotation = Quaternion.Euler(0,0, target.transform.rotation.eulerAngles.y - 180f);
+		this.transform.localRotation = Quaternion.Euler(0,0, target.transform.rotation.eulerAngles.y);
 	}
 }
