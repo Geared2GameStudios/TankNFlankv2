@@ -34,7 +34,7 @@ public class bulletCollision : MonoBehaviour {
 
 		if (other.transform.tag == "Base") 
 		{
-			other.gameObject.GetComponent<destroyObject>().hit = true;
+			other.gameObject.GetComponent<DestroyNonMissionObjects>().hit = true;
 			DestroyObject(this.gameObject);
 		}
 		
