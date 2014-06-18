@@ -74,8 +74,10 @@ public class JeepController : MonoBehaviour {
 				oneTimeOff = false;
 			}
 			
-			currentTime -= Time.deltaTime;
-			
+			if(currentTime >= 0)
+			{
+				currentTime -= Time.deltaTime;
+			}
 					
 		}
 

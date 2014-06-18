@@ -11,15 +11,16 @@ public class TutorialScript : MonoBehaviour
 	private bool check2 = false;
 	private bool check3 = false;
 	
-	public AudioClip[] tutorialClips;
-	public string [] tutorialText;
-	public Transform player;
+	public AudioClip[] 	tutorialClips;
+	public string [] 	tutorialText;
+	public Transform 	player;
 	public GameObject[] checkpoints;
-	public float[] distances;
-	public int index =0;
-	public float seconds = 0f;
-	public  bool check4 = false;
-	public  bool check5 = false;
+	public GameObject 	missileLauncher;
+	public float[] 		distances;
+	public int 			index =0;
+	public float 		seconds = 0f;
+	public  bool 		check4 = false;
+	public  bool 		check5 = false;
 	
 	// Use this for initialization
 	void Awake ()
@@ -65,7 +66,7 @@ public class TutorialScript : MonoBehaviour
 		}
 		if(distances[4] < 10.0f && !check5)
 		{
-			//playermove.stopMove = true;
+			playermove.stopMove = true;
 			check5 = true;
 			index = 8;
 		}
@@ -157,6 +158,13 @@ public class TutorialScript : MonoBehaviour
 		{
 			Application.LoadLevel(0);
 		}
+		
+		if(missileLauncher.GetComponent<destroyObject>().hit)
+		{
+		 index = 9;
+		 seconds = 11;
+		 StartCoroutine("AudioWait6", seconds);
+		}
 
 	}
 	 IEnumerator AudioWait1()
@@ -188,6 +196,7 @@ public class TutorialScript : MonoBehaviour
 		player.audio.volume = 1.0f;
 		player.audio.PlayOneShot(tutorialClips[index]);
 		yield return new WaitForSeconds(secs);
+		playermove.stopMove = false;
 	
 	}
 	IEnumerator AudioWait5(float secs)
@@ -197,6 +206,15 @@ public class TutorialScript : MonoBehaviour
 		yield return new WaitForSeconds(secs);
 		playermove.stopMove = false;
 		index = -1;
+	}
+	IEnumerator AudioWait6(float secs)
+	{
+		player.audio.volume = 1.0f;
+		player.audio.PlayOneShot(tutorialClips[index]);
+		yield return new WaitForSeconds(secs);
+	    Application.LoadLevel(0);
+		
+		
 	}
 	
 }
