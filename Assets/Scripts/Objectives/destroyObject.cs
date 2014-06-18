@@ -28,10 +28,12 @@ public class destroyObject : MonoBehaviour {
 								nextLightPillar.SetActive (true);
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
+								xPlode.SetActive(true);
 						
 							if (this.gameObject.name == "lastObjective"){
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
+								xPlode.SetActive(true);
 								
 								}
 							
