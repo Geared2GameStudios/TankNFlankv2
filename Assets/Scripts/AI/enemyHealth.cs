@@ -7,7 +7,6 @@ public class enemyHealth : MonoBehaviour {
 	
 	
 	private TutorialScript tut;
-	private AI_Navigation AI;
 	
 	public GameObject smoke;
 	public GameObject Xplode;
@@ -22,7 +21,6 @@ public class enemyHealth : MonoBehaviour {
 		isDead = false;
 		Instance = this;
 		tut = chckPoints.GetComponent<TutorialScript>();
-		AI = GameObject.FindGameObjectWithTag ("enemy").gameObject.GetComponent<AI_Navigation> ();
 	}
 	
 	// Update is called once per frame
@@ -39,23 +37,23 @@ public class enemyHealth : MonoBehaviour {
 			if(isDead == false)
 			{
 				isDead = true;
-				AI.enabled = false;
+				this.gameObject.GetComponent<AI_Navigation>().enabled = false;
 				Xplode.SetActive(true);
-				tut.index = 7;
+				//tut.index = 7;
 			}	
 			else 
 			{
-				AI.enabled = false;
+				this.gameObject.GetComponent<AI_Navigation>().enabled = false;
 			}
 		}
 	}
 	
 	IEnumerator turnOffAI()
 	{
-		AI.GetComponent<NavMeshAgent> ().Stop ();
-		AI.enabled = false;
+		this.gameObject.GetComponent<NavMeshAgent> ().Stop ();
+		this.gameObject.GetComponent<AI_Navigation>().enabled = false;
 		yield return new WaitForSeconds(12F);
-		AI.enabled = true;
+		this.gameObject.GetComponent<AI_Navigation>().enabled = true;
 	}
 	
 }

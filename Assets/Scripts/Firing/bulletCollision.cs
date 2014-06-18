@@ -51,7 +51,14 @@ public class bulletCollision : MonoBehaviour {
 			//{
 			//clone = Instantiate(clonePrefab, other.transform.position, other.transform.localRotation) as Transform;
 			//Destroy(other.gameObject);
-			//tut.index = 7;
+			if (other.transform.name == "EnemyTank1")
+			{
+				if (other.gameObject.GetComponent<enemyHealth>().health <= 0)
+				{
+				tut.index = 7;
+				}
+
+			}
 			
 			//}
 			DestroyObject(this.gameObject);

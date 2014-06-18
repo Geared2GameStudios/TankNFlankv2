@@ -18,11 +18,16 @@ public class DestroyNonMissionObjects : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (!hit) {
+			this.gameObject.rigidbody.useGravity = false;
+				}
+
 		if (hit) 
 		{
-			xPlode.SetActive(true);
+			this.gameObject.rigidbody.useGravity = true;
 			this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 			TurboSlice.instance.shatter (gameObject, 3);
+			xPlode.SetActive(true);
 		}
 	}
 }
