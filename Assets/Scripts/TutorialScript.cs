@@ -163,8 +163,9 @@ public class TutorialScript : MonoBehaviour
 		if(missileLauncher.GetComponent<destroyObject>().hit && !played)
 		{
 		 index = 9;
-		 seconds = 11;
+		 seconds = 11f;
 		 played = true;
+		 playermove.stopMove = true;
 		 StartCoroutine("AudioWait6", seconds);
 		}
 
