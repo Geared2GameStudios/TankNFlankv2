@@ -14,6 +14,11 @@ public class enemyHealth : MonoBehaviour {
 	public int health;
 	public int damage;
 	public bool isDead;
+
+	//Sound Variables
+	public AudioClip enemyHit;
+	public bool playOuch = false;
+	public bool soundPlaying = false;
 	
 	
 	// Use this for initialization
@@ -22,17 +27,28 @@ public class enemyHealth : MonoBehaviour {
 		Instance = this;
 		tut = chckPoints.GetComponent<TutorialScript>();
 	}
+
+	void PlaySound()
+	{
+		if (!soundPlaying && !playOuch) 
+		{
+			this.gameObject.audio.PlayOneShot (enemyHit);
+			playOuch = true;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		if (health == 1)
 		{
+			PlaySound ();
 			StartCoroutine(turnOffAI ());
 			smoke.SetActive(true);
 		}
 		else if (health <= 0)
 		{
+			PlaySound ();
 
 			if(isDead == false)
 			{
@@ -45,6 +61,13 @@ public class enemyHealth : MonoBehaviour {
 			{
 				this.gameObject.GetComponent<AI_Navigation>().enabled = false;
 			}
+		}
+
+		if (!audio.clip == null) 
+		{
+			
+			soundPlaying = false;
+			
 		}
 	}
 	

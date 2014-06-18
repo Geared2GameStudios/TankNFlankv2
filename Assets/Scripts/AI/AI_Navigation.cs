@@ -35,6 +35,11 @@ public class AI_Navigation : MonoBehaviour {
 	int layerMask = 1 << 8;
 	
 	RaycastHit hit;
+
+	//Sound Variables
+	public AudioClip playerSeen;
+	public bool playSeen = false;
+	public bool soundPlaying = false;
 	
 	
 	// Use this for initialization
@@ -49,6 +54,16 @@ public class AI_Navigation : MonoBehaviour {
 		test = player.GetComponent<PlayerMove>();
 		isNear = false;
 		isDetected = false;		
+		
+	}
+
+	void PlaySound()
+	{
+		if (!soundPlaying && !playSeen) 
+		{
+			this.gameObject.audio.PlayOneShot (playerSeen);
+			playSeen = true;
+		}
 		
 	}
 	
@@ -69,7 +84,12 @@ public class AI_Navigation : MonoBehaviour {
 				currentNode = 0;
 				
 			}	
-		}		
+		}	
+
+		if (!audio.clip == null) 
+		{			
+			soundPlaying = false;			
+		}
 	}
 	
 	void TransverseWaypoints() //causes npc's to transverse waypoint objects
@@ -86,6 +106,7 @@ public class AI_Navigation : MonoBehaviour {
 		else if (playerDirection.sqrMagnitude < attackRange)
 		{
 			if (isNear && isDetected){
+				PlaySound ();
 				lookAt();
 				attack ();
 				LastPlayerSighting = player.transform.position;
