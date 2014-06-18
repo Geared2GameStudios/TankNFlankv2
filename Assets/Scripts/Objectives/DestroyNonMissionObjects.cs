@@ -4,7 +4,7 @@ using System.Collections;
 public class DestroyNonMissionObjects : MonoBehaviour {
 
 	public bool hit;
-	public ParticleSystem smoke;
+	public GameObject xPlode;
 	public bool deactivate;
 	
 	// Use this for initialization
@@ -20,6 +20,7 @@ public class DestroyNonMissionObjects : MonoBehaviour {
 	{
 		if (hit) 
 		{
+			xPlode.SetActive(true);
 			this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 			TurboSlice.instance.shatter (gameObject, 3);
 		}

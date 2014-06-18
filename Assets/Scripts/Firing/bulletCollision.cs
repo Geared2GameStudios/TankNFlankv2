@@ -46,7 +46,7 @@ public class bulletCollision : MonoBehaviour {
 	
 	  if (other.transform.tag == "enemy") 
 		{
-			eHealth.health -= pStats.playerDamage;
+			other.gameObject.GetComponent<enemyHealth>().health -= pStats.playerDamage;
 			//if (eHealth.health <= 0)
 			//{
 			//clone = Instantiate(clonePrefab, other.transform.position, other.transform.localRotation) as Transform;

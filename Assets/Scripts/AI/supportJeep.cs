@@ -5,6 +5,7 @@ public class supportJeep : MonoBehaviour {
 	public static supportJeep Instance;
 	public GameObject drop;
 	public GameObject truckMesh;
+	public GameObject misselPiller;
 	public bool pickedUp;
 	public bool follow;
 	public bool workDammit;
@@ -49,6 +50,7 @@ public class supportJeep : MonoBehaviour {
 		{
 			follow = true;
 			workDammit = false;
+			misselPiller.SetActive(true);
 		}
 	}
 

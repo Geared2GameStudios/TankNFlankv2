@@ -6,7 +6,7 @@ public class destroyObject : MonoBehaviour {
 	public bool hit;
 	public GameObject currentLightPillar;
 	public GameObject nextLightPillar;
-	public ParticleSystem smoke;
+	public GameObject xPlode;
 	public bool deactivate;
 	
 	// Use this for initialization
@@ -28,7 +28,6 @@ public class destroyObject : MonoBehaviour {
 								nextLightPillar.SetActive (true);
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
-								
 						
 							if (this.gameObject.name == "lastObjective"){
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
@@ -36,10 +35,11 @@ public class destroyObject : MonoBehaviour {
 								
 								}
 							
-							if (this.gameObject.tag == "Base")
+							if (this.gameObject.name == "missleLauncher")
 							{
 								this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 								TurboSlice.instance.shatter (gameObject, 3);
+								xPlode.SetActive(true);
 							}
 				}
 		}
