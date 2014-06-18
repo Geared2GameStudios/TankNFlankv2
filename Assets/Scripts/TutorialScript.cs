@@ -21,7 +21,6 @@ public class TutorialScript : MonoBehaviour
 	public float 		seconds = 0f;
 	public  bool 		check4 = false;
 	public  bool 		check5 = false;
-	public bool 		notPlayed = false;
 	
 	// Use this for initialization
 	void Awake ()
@@ -160,12 +159,11 @@ public class TutorialScript : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 		
-		if(missileLauncher.GetComponent<destroyObject>().hit && !notPlayed)
+		if(missileLauncher.GetComponent<destroyObject>().hit)
 		{
 		 index = 9;
-		 seconds = 12;
+		 seconds = 11;
 		 StartCoroutine("AudioWait6", seconds);
-		 notPlayed = true;
 		}
 
 	}
