@@ -3,7 +3,7 @@ using System.Collections;
 
 public class supportJeep : MonoBehaviour {
 	public static supportJeep Instance;
-	public GameObject drop;
+	public GameObject[] drop;
 	public GameObject truckMesh;
 	public GameObject misselPiller;
 	public bool pickedUp;
@@ -57,7 +57,10 @@ public class supportJeep : MonoBehaviour {
 	void dropPickUp()
 	{
 		truckMesh.SetActive (true);
-		npc.destination = drop.transform.position;
+		if (drop [0].activeInHierarchy == true)
+						npc.destination = drop [0].transform.position;
+				else
+						npc.destination = drop [1].transform.position;
 		
 
 	}

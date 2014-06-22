@@ -112,20 +112,20 @@ public class AI_Navigation : MonoBehaviour {
 				LastPlayerSighting = player.transform.position;
 			}
 			
-			else if (Physics.Raycast(turret.position,turret.forward*100,out hit)|| Vector3.Distance(player.transform.position,this.transform.position) < 100 )
+			else if (Physics.Raycast(turret.position,turret.forward*300,out hit)|| Vector3.Distance(player.transform.position,this.transform.position) < 300 )
 			{
-				if (hit.collider.tag == "Player")
-				{
+				//if (hit.collider.tag == "Player")
+				//{
 					lookAt();
 					attack ();
 					isNear = true; 
 					isDetected = true;
-				}
-				else
-				{
-					turretSweep();
-					isDetected = false;
-				}
+				//}
+				//else
+				//{
+				//	turretSweep();
+				//	isDetected = false;
+				//}
 			} 
 			
 		}

@@ -1,52 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class smokeScreen : MonoBehaviour {
-
-	public GameObject 	smokeScreenPickUp;
+public class DamagePowerUp : MonoBehaviour {
+	
+	public GameObject 	DamagePickUp;
 	public GameObject 	jeep;
-	public GameObject   chckpoint;
 	public GameObject 	player;
+	public GameObject Church;
+	public GameObject Pillar;
 	private playerStats	stats;
-	private TutorialScript tut;
 	private supportJeep support;
-
+	
 	// Use this for initialization
 	void Awake()
 	{
-	  tut = chckpoint.GetComponent<TutorialScript>();
-	 
-	  stats = player.GetComponent<playerStats>();
-	  support = jeep.GetComponent<supportJeep>();
+		
+		stats = player.GetComponent<playerStats>();
+		support = jeep.GetComponent<supportJeep>();
 	}
-
+	
 	// Update is called once per frame
 	void Update () 
 	{
 		Vector3 truckDirection = jeep.transform.position - this.transform.position;
 		if (truckDirection.magnitude < 8)
-						support.pickedUp = true;
-
+			support.pickedUp = true;
+		
 		if (support.pickedUp == true ) 
 		{
-			smokeScreenPickUp.transform.position = jeep.transform.position;
+			DamagePickUp.transform.position = jeep.transform.position;
 		}
-		
 
+		if (Church.GetComponent<DestroyNonMissionObjects> ().hit == true) {
+			Pillar.SetActive (true);
+				}
+		
 	}
 	void OnTriggerEnter(Collider other)
 	{
-
+		
 		if (other.transform.tag == "Player")
 		{
-			stats.bsmokeScreen = true;
+			stats.playerDamage = 2;
 			jeep.SetActive(false);
-			Destroy(smokeScreenPickUp);
-			tut.index = 6;
+			Destroy(DamagePickUp);
 		}
 		else if (other.transform.tag == "jeep") 
 		{
-			smokeScreenPickUp.transform.position = other.transform.position;
+			DamagePickUp.transform.position = other.transform.position;
 			support.pickedUp = true;
 		}
 	}
