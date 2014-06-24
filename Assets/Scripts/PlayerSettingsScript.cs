@@ -20,7 +20,7 @@ public class PlayerSettingsScript : MonoBehaviour
 		DontDestroyOnLoad(this);
 		oculusOn = false;
 		masterVolume = 1.0f;
-		effectsVolume = 1.0f;		
+		effectsVolume = 1.0f;
 	}
 
 	// Use this for initialization
@@ -32,6 +32,8 @@ public class PlayerSettingsScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		AudioListener.volume = masterVolume;
+
 		if(sensorCount != ovrDevice.SenseCount)
 		{
 			if(ovrDevice.SenseCount > 0)

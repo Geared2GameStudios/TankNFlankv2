@@ -30,6 +30,7 @@ public class BulletSpawn : MonoBehaviour
 
 	public void PlaySound()
 	{
+		this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
 		this.gameObject.audio.PlayOneShot (tankFire);
 	}
 

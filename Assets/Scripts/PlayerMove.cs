@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour {
 	void PlaySound(int clip)
 	{
 		audio.volume = 0.5f;
+		//audio.volume = PlayerSettingsScript.Instance.effectsVolume;
 		audio.clip = tankMovement[clip];
 		audio.Play();
 	}

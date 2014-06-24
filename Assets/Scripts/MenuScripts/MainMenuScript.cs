@@ -47,6 +47,7 @@ public class MainMenuScript : MonoBehaviour
 
 	public void PlaySound()
 	{
+		//this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
 		this.gameObject.audio.PlayOneShot (menuClick);
 	}
 
@@ -55,7 +56,7 @@ public class MainMenuScript : MonoBehaviour
 	{
 		CheckCameras();
 		GetMovement();
-		CheckSelection();		
+		CheckSelection();
 	}	
 	void CheckSelection()
 	{
@@ -265,23 +266,28 @@ public class MainMenuScript : MonoBehaviour
 				{
 					PlaySound ();
 					volNum -= 0.1f;
+					PlayerSettingsScript.Instance.masterVolume -= 0.1f;
 				}
 				
 				else if(hit.collider.name == "volUp")
 				{
 					PlaySound ();
 					volNum += 0.1f;
+					PlayerSettingsScript.Instance.masterVolume += 0.1f;
 				}
 				else if(hit.collider.name == "sfxDown")
 				{
 					PlaySound ();
 					sfxNum -= 0.1f;
+					PlayerSettingsScript.Instance.effectsVolume -= 0.1f;
+
 				}
 				
 				else if(hit.collider.name == "sfxUp")
 				{
 					PlaySound ();
 					sfxNum += 0.1f;
+					PlayerSettingsScript.Instance.effectsVolume += 0.1f;
 				}
 				
 				else if(hit.collider.name == "vrOffButton" || hit.collider.name == "vrOnButton")

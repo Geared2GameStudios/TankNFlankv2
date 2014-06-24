@@ -30,6 +30,8 @@ public class enemyHealth : MonoBehaviour {
 
 	void PlaySound()
 	{
+		this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
+
 		if (!soundPlaying && !playOuch) 
 		{
 			this.gameObject.audio.PlayOneShot (enemyHit);
