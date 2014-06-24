@@ -59,7 +59,7 @@ public class AI_Navigation : MonoBehaviour {
 
 	void PlaySound()
 	{
-		this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
+		//this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
 
 		if (!soundPlaying && !playSeen) 
 		{

@@ -15,6 +15,8 @@ public class BulletSpawn : MonoBehaviour
 	private float NextShell = 0;
 	private bool TankFire = false;
 	public GameObject player;
+	//public GameObject persisVol;
+	//public PersistentVolume persisVolScript;
 	//The prefab used for the bullets
 	public GameObject ShellPrefab;
 
@@ -30,7 +32,10 @@ public class BulletSpawn : MonoBehaviour
 
 	public void PlaySound()
 	{
-		this.gameObject.audio.volume = PlayerSettingsScript.Instance.effectsVolume;
+		//persisVol = GameObject.Find ("Volume");
+		//persisVolScript = persisVol.GetComponent("PersistentVolume") as PersistentVolume;
+
+		//this.gameObject.audio.volume = persisVolScript.playerSettings.effectsVolume;
 		this.gameObject.audio.PlayOneShot (tankFire);
 	}
 

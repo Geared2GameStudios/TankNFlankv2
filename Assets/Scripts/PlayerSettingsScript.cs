@@ -10,7 +10,8 @@ public class PlayerSettingsScript : MonoBehaviour
 	public bool 						mainCameraOn = false;
 	public float 						masterVolume = 1.0f;
 	public float						effectsVolume = 1.0f;
-	
+	public GameObject 					persisVol;
+	public PersistentVolume 			persisVolScript;
 	private OVRDevice 					ovrDevice;
 	private int 						sensorCount = -1;
 
