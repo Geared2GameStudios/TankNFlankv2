@@ -30,6 +30,12 @@ public class Gravity : MonoBehaviour {
 
 
 		//Checks closeness to the gound, stops falling if close enough
+		if(rFront.distance > 500.0f || rMiddle.distance > 500.0f)
+		{
+			Vector3 temp = transform.position;
+			temp.y += fGravity + 1;
+			transform.position = temp;
+		}
 		if(rFront.distance > distancetohitground)
 		{
 			//timeProj-= Time.deltaTime;
@@ -68,11 +74,11 @@ public class Gravity : MonoBehaviour {
 			if(vAngle.x < 330 && vAngle.x > 300)
 			{
 			
-				vAngle.x = 340;
+				vAngle.x = 330;
 			}
 			else if (vAngle.x > 40 && vAngle.x < 90 )
 			{
-				vAngle.x = 30;
+				vAngle.x = 40;
 			
 			}
 		

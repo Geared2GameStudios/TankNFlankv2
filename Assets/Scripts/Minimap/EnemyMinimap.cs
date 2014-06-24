@@ -13,7 +13,7 @@ public class EnemyMinimap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Player = GameObject.FindGameObjectWithTag ("Player");
-		Enemies = GameObject.FindGameObjectsWithTag ("enemy");
+		//Enemies = GameObject.FindGameObjectsWithTag ("enemy");
 		LastEnemyDistance = 1000;
 		Enemy = null;
 		//destroyobject = GetComponent<destroyObject>();
@@ -26,15 +26,20 @@ public class EnemyMinimap : MonoBehaviour {
 		
 		for(int i = 0; i < Enemies.GetLength (0); i++)
 		{
-			if(Enemies[i] != null)
+			if((Enemies[i].transform.position - Player.transform.position).magnitude < 100 && (Enemies[i].transform.position - Player.transform.position).magnitude < LastEnemyDistance)
+			{
+				Enemy = Enemies[i];
+			}
+			/*if(Enemies[i] != null)
 				if((Enemies[i].transform.position - Player.transform.position).magnitude < 100 && (Enemies[i].transform.position - Player.transform.position).magnitude < LastEnemyDistance)
 				{
 					Enemy = Enemies[i];
 					LastEnemyDistance = (Enemies[i].transform.position - Player.transform.position).magnitude;
 				}
+				*/
 		}
 		//Debug.Log (Enemy.name);
-		if(Enemy == null)
+		if(Enemy == null || (Enemy.transform.position - Player.transform.position).magnitude > 100)
 		{
 
 			renderer.enabled = false;
