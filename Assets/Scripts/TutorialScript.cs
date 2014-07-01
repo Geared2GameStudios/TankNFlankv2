@@ -149,7 +149,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 	// Update is called once per frame
-	void Update () 
+	void Update ()                                                                  
 	{
 		GetDistances();
 		if(index != -1)
