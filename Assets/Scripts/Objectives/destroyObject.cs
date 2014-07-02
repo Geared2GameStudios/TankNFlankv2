@@ -3,6 +3,7 @@ using System.Collections;
 
 public class destroyObject : MonoBehaviour 
 {
+	private GameObject firstDrop;
 
 	public bool hit;
 	public GameObject currentLightPillar;
@@ -15,7 +16,7 @@ public class destroyObject : MonoBehaviour
 	{
 		hit = false;
 		deactivate =  false;
-		
+		firstDrop = GameObject.Find ("powerUpSmokescreen");
 	}
 	
 	// Update is called once per frame
@@ -38,6 +39,7 @@ public class destroyObject : MonoBehaviour
 				this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 				TurboSlice.instance.shatter (gameObject, 3);
 				xPlode.SetActive(true);
+				firstDrop.gameObject.GetComponent<smokeScreen>().isActive = true;
 			}
 					
 			

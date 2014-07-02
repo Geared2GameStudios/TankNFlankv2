@@ -3,18 +3,18 @@ using System.Collections;
 
 public class supportJeep : MonoBehaviour {
 	public static supportJeep Instance;
-	public GameObject drop;
+	public GameObject[] drop;
 	public GameObject truckMesh;
 	public GameObject misselPiller;
 	public bool pickedUp;
 	public bool follow;
 	public bool workDammit;
 	public Transform player;
-
+	
 	NavMeshAgent npc;
-
-
-
+	
+	
+	
 	// Use this for initialization
 	void Start () {
 		Instance = this;
@@ -26,15 +26,15 @@ public class supportJeep : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (follow && workDammit == false && pickedUp == false) 
 		{
 			npc.destination = player.localPosition;
 			truckMesh.SetActive(false);
 			
 		}
-
-
+		
+		
 		if (follow) 
 		{
 			npc.destination = player.localPosition;
@@ -42,24 +42,31 @@ public class supportJeep : MonoBehaviour {
 		
 		if (workDammit == true)
 		{
+			if (pickedUp)
+				pickedUp = false;
+
 			follow = false;
 			dropPickUp ();
 		}
-
+		
 		if (pickedUp == true) 
 		{
-			follow = true;
 			workDammit = false;
+			follow = true;
 			misselPiller.SetActive(true);
 		}
 	}
-
+	
 	void dropPickUp()
 	{
 		truckMesh.SetActive (true);
-						npc.destination = drop.transform.position;
-
+		if (drop[0].gameObject.GetComponent<smokeScreen>().isActive == true)
+			npc.destination = drop[0].transform.position;
+		if (drop[1].gameObject.GetComponent<smokeScreen>().isActive == true)
+			npc.destination = drop[1].transform.position;
+		if (drop[2].gameObject.GetComponent<DamagePowerUp>().isActive == true)
+			npc.destination = drop[2].transform.position;
 		
-
+		
 	}
 }
