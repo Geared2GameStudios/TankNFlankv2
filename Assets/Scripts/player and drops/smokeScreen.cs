@@ -3,7 +3,7 @@ using System.Collections;
 
 public class smokeScreen : MonoBehaviour {
 	
-	//public GameObject 	smokeScreenPickUp;
+	public GameObject 	smokeScreenPickUp;
 	public GameObject 	jeep;
 	public GameObject   chckpoint;
 	public GameObject 	player;
@@ -57,7 +57,7 @@ public class smokeScreen : MonoBehaviour {
 		{
 			stats.bsmokeScreen = true;
 			truckMesh.SetActive(false);
-			Destroy(this);
+			Destroy(smokeScreenPickUp);
 			if (this.name == "powerUpSmokescreen")
 				tut.index = 6;
 		}

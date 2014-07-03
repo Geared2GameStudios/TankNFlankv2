@@ -60,11 +60,11 @@ public class supportJeep : MonoBehaviour {
 	void dropPickUp()
 	{
 		truckMesh.SetActive (true);
-		if (drop[0].gameObject.GetComponent<smokeScreen>().isActive == true)
+		if (drop[0].gameObject.GetComponent<smokeScreen>().isActive == true && drop[0])
 			npc.destination = drop[0].transform.position;
-		if (drop[1].gameObject.GetComponent<smokeScreen>().isActive == true)
+		if (drop[1].gameObject.GetComponent<smokeScreen>().isActive == true && drop[1])
 			npc.destination = drop[1].transform.position;
-		if (drop[2].gameObject.GetComponent<DamagePowerUp>().isActive == true)
+		if (drop[2].gameObject.GetComponent<DamagePowerUp>().isActive == true && drop[2])
 			npc.destination = drop[2].transform.position;
 		
 		
