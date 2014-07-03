@@ -10,6 +10,12 @@ public class destroyObject : MonoBehaviour
 	public GameObject nextLightPillar;
 	public GameObject xPlode;
 	public bool deactivate;
+
+	//Sound Variables
+	public AudioClip objectHit;
+	public bool playExplosion = false;
+	public bool soundPlaying = false;
+
 	
 	// Use this for initialization
 	void Awake () 
@@ -17,6 +23,15 @@ public class destroyObject : MonoBehaviour
 		hit = false;
 		deactivate =  false;
 		firstDrop = GameObject.Find ("powerUpSmokescreen");
+	}
+
+	void PlaySound()
+	{		
+		if (!soundPlaying && !playExplosion) 
+		{
+			this.gameObject.audio.PlayOneShot (objectHit);
+			playExplosion = true;
+		}
 	}
 	
 	// Update is called once per frame
@@ -42,6 +57,13 @@ public class destroyObject : MonoBehaviour
 				firstDrop.gameObject.GetComponent<smokeScreen>().isActive = true;
 			}
 					
+			
+		}
+
+		if (!audio.clip == null) 
+		{
+			
+			soundPlaying = false;
 			
 		}
 	}
