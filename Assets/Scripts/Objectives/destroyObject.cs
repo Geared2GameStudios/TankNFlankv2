@@ -26,9 +26,10 @@ public class destroyObject : MonoBehaviour
 	}
 
 	void PlaySound()
-	{		
+	{	
 		if (!soundPlaying && !playExplosion) 
 		{
+			Debug.Log ("BOOM");
 			this.gameObject.audio.PlayOneShot (objectHit);
 			playExplosion = true;
 		}
@@ -42,7 +43,8 @@ public class destroyObject : MonoBehaviour
 			deactivate = true;
 		}
 		if (hit) 
-		{				
+		{		
+			PlaySound ();
 			currentLightPillar.SetActive (false);
 			nextLightPillar.SetActive (true);
 			this.gameObject.GetComponent<TSD5Fate>().enabled = true;
@@ -51,6 +53,7 @@ public class destroyObject : MonoBehaviour
 		
 			if (this.gameObject.name == "lastObjective")
 			{
+				PlaySound ();
 				this.gameObject.GetComponent<TSD5Fate>().enabled = true;
 				TurboSlice.instance.shatter (gameObject, 3);
 				xPlode.SetActive(true);
@@ -60,11 +63,9 @@ public class destroyObject : MonoBehaviour
 			
 		}
 
-		if (!audio.clip == null) 
-		{
-			
-			soundPlaying = false;
-			
+		if (audio.clip == null) 
+		{			
+			soundPlaying = false;			
 		}
 	}
 }
